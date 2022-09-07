@@ -2,12 +2,13 @@
 import cv2
 import numpy as np
 import argparse
+import os
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Convolution')
-    parser.add_argument('input',help='input image name')
-    parser.add_argument('kernel',help='convolution kernel')
-    parser.add_argument('output',help='output name')
+    parser.add_argument('-i',help='input image path')
+    parser.add_argument('-k',help='convolution kernel. one of "roberts", "prewitt", "sobel", "LoG"')
+    parser.add_argument('-o',help='output mask path')
     args = parser.parse_args()
     return args
 
@@ -41,9 +42,9 @@ def detectEdge(inputImage,kernel):
 
 def main():
     args = parse_args()
-    inputImg = args.input
-    kernel = args.kernel
-    output = args.output
+    inputImg = args.i
+    kernel = args.k
+    output = args.o
 
     image = cv2.imread(inputImg, cv2.IMREAD_UNCHANGED)
     kernelMatrix = get_kernel(kernel)
