@@ -24,6 +24,8 @@ def get_kernel(kernel):
     return kernelDict[kernel]
 
 def detectEdge(inputImage,kernel):
+    assert len(inputImage.shape)==2
+    
     (H,W) = inputImage.shape
     edgeImage = np.zeros((H,W),dtype=int)
 
